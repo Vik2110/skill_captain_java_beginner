@@ -1,0 +1,38 @@
+package com.hello;
+
+//This program introduces all the primitive data types by creating variables of each
+// these data types, declaring them and finally printing them!
+
+public class Main {
+
+    public static void main(String[] args) {
+        byte varByte;
+        short varShort;
+        int varInt;
+        long varLong;
+        float varFloat;
+        double varDouble;
+        char varChar;
+        boolean varBoolean;
+
+        varByte = 2;
+        varShort = 300;
+        varInt = 33000;
+        varLong = 300000000;
+        varFloat = 3.0f;
+        varDouble = 15.234d;
+        varChar = 'C';
+        varBoolean = true;
+
+        System.out.println(varByte);
+        System.out.println(varShort);
+        System.out.println(varInt);
+        System.out.println(varLong);
+        System.out.println(varFloat);
+        System.out.println(varDouble);
+        System.out.println(varChar);
+        System.out.println(varBoolean);
+
+
+    }
+}
