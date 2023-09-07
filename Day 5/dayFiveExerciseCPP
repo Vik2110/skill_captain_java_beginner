@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+int main () {
+
+    cout << "Enter number 1: ";
+    int num1;
+    cin >> num1;
+
+    cout << "Enter number 2: ";
+    int num2;
+    cin >> num2;
+
+    cout << "Enter the operation (+, -, *, /): ";
+    char opertr;
+    cin >> opertr;
+
+    int result(0);
+    float resultDiv(0.0f);
+
+    switch (opertr)
+    {
+    
+    case '+':
+        result = num1 + num2;
+        cout << num1 << " " << opertr << " " << num2 << " = " << result << endl;
+        break;
+   
+    case '-':
+        if (num1 > num2) {
+            result = num1 - num2;
+            cout << num1 << " " << opertr << " " << num2 << " = " << result << endl;
+        } else {
+            result = num2 - num1;
+            cout << num2 << " " << opertr << " " << num1 << " = " << result << endl;
+        }
+        break;
+   
+    case '*':
+        result = num1 * num2;
+        cout << num1 << " " << opertr << " " << num2 << " = " << result << endl;
+        break;
+    
+    case '/':
+        if (num1 == 0 || num2 == 0) {
+            cout << "As one of the number is 0, hence skipping division. Answer would be either 0 or infinity" << endl;
+        } else {
+            resultDiv = static_cast<float> ( num1 ) / static_cast<float> ( num2 ); // Using static cast for ensuring that the division result shows decimal
+            cout << num1 << " " << opertr << " " << num2 << " = " << resultDiv << endl;
+        }
+        
+        break;
+    
+    default:
+        cout << "Illegal Operator assigned!" << endl;
+        break;
+    }
+
+
+    return 0;
+}
