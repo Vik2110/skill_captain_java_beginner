@@ -1,0 +1,69 @@
+package com.hello;
+
+//This program takes 2 numbers and a mathematical operator from the user -  num1, num2, and (+,-,*,/)
+//and returns the calculation based on the operator provided
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter number 1: ");
+        int num1 = scanner.nextInt();
+
+        System.out.print("Enter number 2: ");
+        int num2 = scanner.nextInt();
+
+        System.out.print("Enter the Operator (+, -, *, /): ");
+        char varOperator = scanner.next().charAt(0);
+
+        int result;
+        // Creating a float variable to capture result of division
+        float resultDiv;
+
+        switch (varOperator) {
+
+            case '+' :
+                result = num1 + num2;
+                System.out.println(num1 + " " + varOperator + " " + num2 + " = " + result);
+                break;
+
+            case '-' :
+            // Checking which of the two is greater and handling the calculation accordingly to ensure +ve answer
+                if (num1 > num2) {
+                    result = num1 - num2;
+                    System.out.println(num1 + " " + varOperator + " " + num2 + " = " + result);
+                } else {
+                    result = num2 - num1;
+                    System.out.println(num2 + " " + varOperator + " " + num1 + " = " + result);
+                }
+                break;
+
+            case '*' :
+                result = num1 * num2;
+                System.out.println(num1 + " " + varOperator + " " + num2 + " = " + result);
+                break;
+
+            case '/' :
+            // Checking if either of the two numbers is zer0, as division by 0 is infinity and 0 divided by anything is 0
+                if ( num1 == 0 || num2 == 0 ) {
+                    System.out.println("As one of the number is 0, hence skipping division. Answer would be either 0 or infinity!");
+                } else {
+                    resultDiv = (float) num1 / num2; // Casting open of the operands as floats so as to show decimal values
+                    System.out.println(num1 + " " + varOperator + " " + num2 + " = " + resultDiv);
+                }
+                break;
+
+            default:
+                System.out.println("Illegal Operator assigned!");
+                break;
+        }
+
+        scanner.close();
+
+
+    }
+}
