@@ -1,0 +1,25 @@
+package com.hello;
+
+//This program takes 2 inputs from the user -  Age [int], and Name [String]
+//and finally prints in a format
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter your age: ");
+        int varAge = scanner.nextInt();
+        System.out.print("Enter your name: ");
+        String varName = scanner.next();
+
+        System.out.println("Hello " + varName + "! You are " + varAge + " years old.");
+
+        scanner.close();
+
+
+    }
+}
