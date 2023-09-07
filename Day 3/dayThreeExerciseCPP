@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include <iostream>
+
+using namespace std;
+
+int main () {
+
+    cout << "Enter your age: ";
+    int varAge;
+    cin >> varAge;
+    
+    
+    cout << "Enter your Name: ";
+    string varName;
+    cin >> varName;
+    
+
+    cout << "Hello " << varName << "! You are " << varAge << " years old." << endl;
+
+    return 0;
+}
