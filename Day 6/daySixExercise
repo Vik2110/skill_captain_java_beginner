@@ -1,0 +1,46 @@
+package com.hello;
+
+//This program demostrates the various loops - do-while, for and while loops
+//with some checks
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        do {
+
+            System.out.print("Enter a number between 1 and 10: ");
+            int number = scanner.nextInt();
+
+
+            if (number >= 1 && number <= 10) {
+                System.out.println("You have entered " + number);
+                break;
+            } else {
+                System.out.println("You have entered an invalid input!");
+                continue;
+            }
+
+        } while (true);
+
+        for (int i = 1; i <= 10; i++) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        int counter = 1;
+        while (counter <= 20) {
+
+            System.out.print(counter + " ");
+            counter++;
+        }
+      
+        System.out.println();
+
+        scanner.close();
+    }
+}
