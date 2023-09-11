@@ -1,0 +1,55 @@
+package com.hello;
+
+//This program asks user to provide 5 numbers, which are stored in an array
+//then evaluates the sum, average, finds the min and max of these 5 and eventually prints all of these values
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int[] numbers = new int[5];
+        System.out.println("Enter the 5 numbers: ");
+
+        for (int i = 0; i < numbers.length ; i++) {
+
+            numbers[i] = scanner.nextInt();
+
+        }
+
+        int varSum, varMin,varMax;
+        float varAverage = 0.0f;
+        varSum = 0;
+        varMin = numbers[0];
+        varMax = numbers[0];
+
+        for (int i = 0; i < numbers.length ; i++) {
+
+            varSum += numbers[i];
+
+            if (varMax < numbers[i]) {
+                varMax = numbers[i];
+            }
+
+            if (varMin > numbers[i]) {
+                varMin = numbers[i];
+            }
+
+
+        }
+
+        varAverage = (float) varSum / numbers.length;
+
+        System.out.println("The sum of the numbers is: " + varSum);
+        System.out.println("The minimum of the numbers is: " + varMin);
+        System.out.println("The maximum of the numbers is: " + varMax);
+        System.out.println("The Average of the numbers is: " + varAverage);
+
+        scanner.close();
+
+
+    }
+}
