@@ -1,0 +1,220 @@
+package com.hello;
+
+//This program provides the functionality to manage a grocery list - add item, remove an item, search for an item, delete the
+//list, and print the entire list
+
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class Main {
+
+
+    public static void main(String[] args) {
+
+
+        List<String> groceryList = new ArrayList<>();
+        launchListMenu(groceryList);
+
+
+    }
+
+    static void launchListMenu (List<String> sentList) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Welcome to Grocery List Manager!");
+        System.out.println("Please select the option from below for performing an action (1,2,3,4,5,6): ");
+        int varOption;
+        int exitClause = 0;
+
+        do {
+
+            System.out.println("1. Add an item to the list");
+            System.out.println("2. Remove an item to the list");
+            System.out.println("3. Confirm if an item is in the list");
+            System.out.println("4. Print the list");
+            System.out.println("5. Clear the list");
+            System.out.println("6. End");
+            System.out.print("Enter your option: ");
+
+            varOption = scanner.nextInt();
+
+            if (varOption <1 || varOption > 6) {
+                System.out.println("Invalid input received, please try again ... ");
+                System.out.println();
+                continue;
+            } else {
+
+                switch (varOption) {
+
+                    case 1:
+                        System.out.print("Enter an item to be added to the grocery list: ");
+                        String itemToAdd = scanner.next();
+                        addItemToList(sentList,itemToAdd);
+                        System.out.println();
+                        break;
+
+                    case 2:
+                        System.out.print("Enter an item to be removed from the grocery list: ");
+                        String itemToDelete = scanner.next();
+                        removeItemFromList(sentList,itemToDelete);
+                        System.out.println();
+                        break;
+
+                    case 3:
+                        System.out.print("Enter an item to be searched in the grocery list: ");
+                        String itemToSearch = scanner.next();
+                        boolean varCheck = searchItemInList(sentList, itemToSearch);
+                        if (!varCheck) {
+                            System.out.println("This item " + itemToSearch + " is not present in the list.");
+                        }
+                        System.out.println();
+                        break;
+
+                    case 4:
+                        printList(sentList);
+                        System.out.println();
+                        break;
+
+                    case 5:
+                        clearTheList(sentList);
+                        System.out.println();
+                        break;
+
+                    case 6:
+                        exitClause = 1;
+                        System.out.println("Thank you for using the Grocery List Manager!");
+                        break;
+
+                    default:
+                        break;
+
+                }
+
+            }
+
+            if (exitClause == 1) {
+                break;
+            }
+
+        } while (true);
+
+    }
+
+    static void printList (List<String> sentList) {
+
+        if (sentList.size() == 0) {
+            System.out.println("The list is empty.");
+            System.out.println();
+            return;
+        } else {
+            System.out.println("Printing the list ...");
+
+            for (String str : sentList) {
+                System.out.println(str);
+            }
+        }
+        System.out.println();
+        return;
+    }
+
+    static void addItemToList (List<String> sentList, String itemToAdd) {
+
+        if (searchItemInList(sentList, itemToAdd)) {
+            System.out.println("Skipping adding " + itemToAdd + " to the list.");
+
+        } else {
+            System.out.println("Adding " + itemToAdd + " to the list ... ");
+            sentList.add(itemToAdd);
+            System.out.println(itemToAdd + " has been added to the list");
+            System.out.println();
+        }
+    }
+
+    static void removeItemFromList (List<String> sentList, String itemToDelete) {
+        Scanner scanner = new Scanner(System.in);
+
+        if(searchItemInList(sentList, itemToDelete)) {
+            System.out.print("Are you sure you want to delete " + itemToDelete + " from the list? (Y/N): ");
+            String varChoice = scanner.next();
+            do {
+
+                if (varChoice.length() == 1) {
+                    if (varChoice.toLowerCase().equals("y") ) {
+                        System.out.println("Deleting " + itemToDelete + " from the list ...");
+                        sentList.remove(itemToDelete);
+                        System.out.println(itemToDelete + " has been deleted!");
+                        break;
+                    } else if (varChoice.toLowerCase().equals("n")) {
+                        System.out.println("Aborting deletion of " + itemToDelete);
+                        break;
+                    } else {
+                        System.out.print("You have entered a wrong input, please enter Y/N: ");
+                        continue;
+                    }
+                } else {
+                    System.out.println("You have entered a String rather than Y or N, please enter again: ");
+                    continue;
+                }
+
+            } while (true);
+
+
+        } else {
+            System.out.println("The item " + itemToDelete + " does not exist in the list.");
+        }
+        scanner.close();
+
+    }
+
+    static boolean searchItemInList (List<String> sentList, String itemToSearch) {
+
+        if(sentList.contains(itemToSearch)) {
+            System.out.println("The item " + itemToSearch + " is present in the list.");
+            return true;
+        }
+        return false;
+    }
+
+    static boolean clearTheList (List<String> sentList) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        if(sentList.size() == 0) {
+            System.out.println("The list is already empty, nothing to clear!");
+            return false;
+        } else {
+            System.out.print("Are you sure you want to clear the entire list? (Y/N): ");
+            String varChoice;
+            varChoice = scanner.next();
+            do {
+
+                if(varChoice.length() == 1) {
+                    if (varChoice.toLowerCase().equals("y")) {
+                        System.out.println("Clearing the entire list ...");
+                        sentList.clear();
+                        System.out.println("The list has been cleared.");
+                        break;
+                    } else if (varChoice.toLowerCase().equals("n")) {
+                        System.out.println("Aborting clearing of the list.");
+                        break;
+                    } else {
+                        System.out.print("You have entered a wrong input, please enter Y/N: ");
+                        continue;
+                    }
+                } else {
+                    System.out.println("You have entered a String rather than Y or N, please enter again: ");
+                    continue;
+                }
+
+            } while (true);
+            scanner.close();
+            return true;
+        }
+    }
+
+
+}
