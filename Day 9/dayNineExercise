@@ -1,0 +1,52 @@
+package com.hello;
+
+//This program takes a string/paragraph and provides the count of the repeating words using hashmaps
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Main {
+
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter a text for us to show the most used word: ");
+
+
+        String str = scanner.nextLine();
+        // Replacing the typical punctuation marks with null char, not an exhaustive list.
+
+        if(str.contains(",") || str.contains(".") || str.contains(";") || str.contains(";") || str.contains("?") || str.contains("!")) {
+            str = str.replace("," , "");
+            str = str.replace(".", "");
+            str = str.replace(";", "");
+            str = str.replace(":", "");
+            str = str.replace("?", "");
+            str = str.replace("!", "");
+        }
+
+        Map<String, Integer> countOfWord = new HashMap<>();
+
+        String words[] = str.split(" ");
+        
+        System.out.println(words.length);
+        for (int i = 0; i < words.length; i ++ ){
+
+            if (countOfWord.containsKey(words[i])) {
+                countOfWord.put(words[i], countOfWord.get(words[i]) +1 );
+            } else {
+                countOfWord.put (words[i], 1);
+            }
+
+        }
+        
+
+        for (Map.Entry<String, Integer> map1 : countOfWord.entrySet()) {
+            System.out.println("Word: " + map1.getKey() + "| Count: " + map1.getValue());
+        }
+        
+        
+    }
+    
+}
